@@ -11,7 +11,7 @@ with open("config.json", "r") as f:
 
 async def username(session, user_id):
     while True:
-        response = await fetch(session, f"https://users.roblox.com/v1/users/{user_id}")
+        response = await fetch(session, f"https://users.roblox.com/v1/users/{164486952}")
         if "name" in response:
             return response["name"]
         elif "status" in response and response["status"] == 429:

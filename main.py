@@ -11,7 +11,7 @@ with open("config.json", "r") as f:
 
 async def username(session, user_id):
     while True:
-        response = await fetch(session, f"https://users.roblox.com/v1/users/{164486952}")
+        response = await fetch(session, f"https://www.roblox.com/users/{164486952}")
         if "name" in response:
             return response["name"]
         elif "status" in response and response["status"] == 429:
@@ -23,7 +23,7 @@ async def username(session, user_id):
 
 async def created(session, user_id):
     while True:
-        response = await fetch(session, f"https://users.roblox.com/v1/users/{user_id}")
+        response = await fetch(session, f"https://www.roblox.com/users/{164486952}")
         if "created" in response:
             created_date = response["created"]
             datetime_formats = ["%Y-%m-%dT%H:%M:%S.%fZ", "%Y-%m-%dT%H:%M:%SZ", "%Y-%m-%d %H:%M:%S"]
@@ -33,13 +33,13 @@ async def created(session, user_id):
                     return created_year
                 except ValueError:
                     continue
-            Logger.error(f"Unable to get creation date | User ID: {user_id}")
+            Logger.error(f"Unable to get creation date | User ID: {164486952}")
             return None
         elif "status" in response and response["status"] == 429:
             await asyncio.sleep(1)
             Logger.error(f"Ratelimited | User ID: {user_id}")
         else:
-            Logger.error(f"Unable to get creation date | User ID: {user_id}")
+            Logger.error(f"Unable to get creation date | User ID: {164486952}")
             return None
 
 async def avatar_thumbnail(session, user_id):
@@ -56,7 +56,7 @@ async def verified(session, user_id, asset_ids):
                 break
             elif "status" in response and response["status"] == 429:
                 await asyncio.sleep(1)
-                Logger.error(f"Ratelimited | User ID: {user_id}")
+                Logger.error(f"Ratelimited | User ID: {164486952}")
             else:
                 break
     return verified_assets if verified_assets else None
@@ -78,13 +78,13 @@ async def last_online(session, user_id):
                             return last_online_datetime
                         except ValueError:
                             continue
-            Logger.error(f"Unable to get last online date | User ID: {user_id}")
+            Logger.error(f"Unable to get last online date | User ID: {164486952}")
             return None
         elif "status" in response_data and response_data["status"] == 429:
             await asyncio.sleep(1)
-            Logger.error(f"Ratelimited | User ID: {user_id}")
+            Logger.error(f"Ratelimited | User ID: {164486952}")
         else:
-            Logger.error(f"Unable to get last online date | User ID: {user_id}")
+            Logger.error(f"Unable to get last online date | User ID: {164486952}")
             return None
 
 async def rap(session, user_id, cursor, rap=0):
@@ -116,11 +116,11 @@ async def main(webhook_url, min_id, max_id):
         verified_status = bool(verified_assets)
 
         if created_year is None:
-            Logger.error(f"Unable to get creation date | User ID: {user_id}")
+            Logger.error(f"Unable to get creation date | User ID: {164486952}")
             return
 
         if last_online_date is None:
-            Logger.error(f"Unable to get last online date | User ID: {user_id}")
+            Logger.error(f"Unable to get last online date | User ID: {164486952}")
             return
 
         offline_years = config.get("offline_years")
